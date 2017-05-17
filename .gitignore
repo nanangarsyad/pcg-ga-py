@@ -103,6 +103,8 @@ env3.6_64/
 # mypy
 .mypy_cache/
 
+ _gist_repo
+
 # workspace
 .idea
 .vscode
