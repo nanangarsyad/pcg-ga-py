@@ -1,0 +1,35 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Mar 12 19:41:22 2017
+
+@author: NAAF
+"""
+
+# ceate terrain naming,
+from init import *; from helper import *
+mm = x_.MapManager(hmap, {'low-land': [None, 720],'land' : [721, 727],'hi-land': [728, None]})
+gaM = gaM = x_.GaManager(mm)
+
+# create atm (atmosphere)
+mm.add_attr('atm', 'm_mapData.copy()', ph1)
+ph1 = \
+"""
+min = normalize(m_lowLimit)
+max = normalize(m_hiLimit)
+map = m_mapAttrs['atm']
+zone = _np.linspace(min, max, 10)
+size = len(zone)
+for idx, e in enumerate(zone):
+    if idx != size-1 :
+        map[(map >= zone[idx]) & (map < zone[idx+1])] = e                
+    
+#TODO: store the contours instead of the map
+"""
+
+#print GA result
+x, y = ret[1]
+w, h = ret[2]
+img[x:x+w, y:y+h] = 1.0
+plt.imshow(img)
+
+# create humidity
